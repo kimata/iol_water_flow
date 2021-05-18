@@ -12,9 +12,9 @@ SPI と UART で Raspberry Pi と接続します．
 
 Ubuntu を使っている場合，`/boot/firmware/usercfg.txt` に下記の設定を行います．
 
-> dtparam=spi=on
-> enable_uart=1
-> dtoverlay=disable-bt
+    dtparam=spi=on
+    enable_uart=1
+    dtoverlay=disable-bt
 
 ## 使用方法
 
