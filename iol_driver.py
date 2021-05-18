@@ -75,10 +75,12 @@ def com_init():
 
 
 def com_start(spi):
-    # Power on, CQ OC Timeout = 480us
-    ltc2874_reg_write(spi, 0x0E, 0x11)
+    enl1 = ltc2874_reg_read(spi, 0x0E)
 
-    time.sleep(2)
+    if enl1 != 0x11:
+        # Power on, CQ OC Timeout = 480us
+        ltc2874_reg_write(spi, 0x0E, 0x11)
+        time.sleep(2)
 
     # Wakeup
     ltc2874_reg_write(spi, 0x0D, 0x10)
@@ -96,13 +98,14 @@ def com_start(spi):
     )
 
 
-def com_stop(spi, ser):
+def com_stop(spi, ser, is_power_off=False):
     ser.close()
     # Drive disable
     ltc2874_reg_write(spi, 0x0D, 0x00)
 
-    # # Power off
-    # ltc2874_reg_write(spi, 0x0E, 0x00)
+    if is_power_off:
+        # Power off
+        ltc2874_reg_write(spi, 0x0E, 0x00)
 
 
 def com_write(spi, ser, byte_list):
