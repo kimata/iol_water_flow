@@ -4,6 +4,7 @@
 # KEYENCE のクランプオン式流量センサ FD-Q10C と IO-LINK で通信を行なって
 # 流量を取得するスクリプト．
 
+import spidev
 import serial
 import struct
 import time
@@ -62,6 +63,15 @@ def msq_build(rw, ch, addr, mtype, data):
     msq[1] = cht
 
     return msq
+
+
+def com_init():
+    spi = spidev.SpiDev()
+    spi.open(0, 0)
+    spi.max_speed_hz = 100000
+    spi.mode = 1
+
+    return spi
 
 
 def com_start(spi):

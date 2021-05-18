@@ -1,17 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import spidev
 import pprint
 import time
 import struct
 
 import iol_driver
-    
-spi = spidev.SpiDev()
-spi.open(0, 0)
-spi.max_speed_hz = 100000
-spi.mode = 1
 
 ser = iol_driver.com_start(spi)
 
