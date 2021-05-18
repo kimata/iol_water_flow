@@ -62,10 +62,6 @@ def msq_build(rw, ch, addr, mtype, data):
 
 
 def com_start(spi):
-    # Power off
-    ltc2874_reg_write(spi, 0x0E, 0x00)
-    time.sleep(1)
-
     # Power on, CQ OC Timeout = 480us
     ltc2874_reg_write(spi, 0x0E, 0x11)
 
@@ -91,8 +87,9 @@ def com_stop(spi, ser):
     ser.close()
     # Drive disable
     ltc2874_reg_write(spi, 0x0D, 0x00)
-    # Power off
-    ltc2874_reg_write(spi, 0x0E, 0x00)
+
+    # # Power off
+    # ltc2874_reg_write(spi, 0x0E, 0x00)
 
 
 def com_write(spi, ser, byte_list):
