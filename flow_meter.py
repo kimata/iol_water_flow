@@ -4,10 +4,7 @@
 import spidev
 import pprint
 import time
-import serial
-import RPi.GPIO as GPIO
 import struct
-import sys
 
 import iol_driver
     
