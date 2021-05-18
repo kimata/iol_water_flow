@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-# KEYENCE のクランプオン式流量センサ FD-Q10C と IO-LINK で通信を行なって
-# 流量を取得するスクリプト．
+# ADI の LTC2874 を使って，IO-LINK 通信を行うラブラリです．
 
 import spidev
 import serial
