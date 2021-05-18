@@ -189,20 +189,19 @@ def isdu_read(spi, ser, index, data_type):
     data_list = []
     header = isdu_res_read(spi, ser, 0x10)
     chk ^= header
-    length = 0
 
     if (header >> 4) == 0x0D:
         if (header & 0x0F) == 0x01:
-            length = isdu_res_read(spi, ser, flow)
+            remain = isdu_res_read(spi, ser, flow) - 2
             flow += 1
             chk ^= length
         else:
-            length = (header & 0x0F) - 1
+            remain = (header & 0x0F) - 1
     elif (header >> 4) == 0x0C:
         # ERROR
         raise RuntimeError('ERROR reponse')
 
-    for x in range(length-3):
+    for x in range(remain-1):
         data = isdu_res_read(spi, ser, flow & 0xF)
         data_list.append(data)
         flow += 1
