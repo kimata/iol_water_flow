@@ -210,6 +210,8 @@ def isdu_read(spi, ser, index, data_type):
     elif (header >> 4) == 0x0C:
         # ERROR
         raise RuntimeError('ERROR reponse')
+    else:
+        raise RuntimeError('INVALID reponse')
 
     for x in range(remain-1):
         data = isdu_res_read(spi, ser, flow & 0xF)
