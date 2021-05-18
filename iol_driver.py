@@ -20,7 +20,9 @@ def warn(message):
 
 
 def dump_byte_list(label, byte_list):
-    print('{}: {}'.format(label, ', '.join(hex(x) for x in byte_list)))
+    # for DEBUG
+    # print('{}: {}'.format(label, ', '.join(hex(x) for x in byte_list)))
+    return
 
 
 def ltc2874_reg_read(spi, reg):
