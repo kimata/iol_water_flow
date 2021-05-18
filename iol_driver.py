@@ -212,6 +212,6 @@ def isdu_read(spi, ser, index, data_type):
     if data_type == DATA_TYPE_STRING:
         return struct.pack('{}B'.format(len(data_list)), *data_list).decode('utf-8')
     elif data_type == DATA_TYPE_INTEGER:
-        raise "未実装"
+        return struct.unpack('>H', bytes(data_list))[0]
     else:
         return data_list
