@@ -29,7 +29,7 @@ def dump_byte_list(label, byte_list):
 
 
 def ltc2874_reg_read(spi, reg):
-    return spi.xfer2([ (0x00 << 5) | (reg << 1), 0x00])
+    return spi.xfer2([ (0x00 << 5) | (reg << 1), 0x00])[1]
 
 
 def ltc2874_reg_write(spi, reg, data):

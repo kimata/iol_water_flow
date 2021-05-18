@@ -11,7 +11,7 @@ import iol_driver
 spi = spidev.SpiDev()
 spi.open(0, 0)
 spi.max_speed_hz = 100000
-spi.mode = 0
+spi.mode = 1
 
 ser = iol_driver.com_start(spi)
 
