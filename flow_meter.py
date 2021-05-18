@@ -15,13 +15,10 @@ spi.mode = 0
 
 ser = iol_driver.com_start(spi)
 
-iol_driver.dir_param_read(spi, ser, 0x01)
-iol_driver.dir_param_read(spi, ser, 0x02)
-iol_driver.dir_param_read(spi, ser, 0x03)
+# iol_driver.dir_param_read(spi, ser, 0x01)
+# iol_driver.dir_param_read(spi, ser, 0x02)
+# iol_driver.dir_param_read(spi, ser, 0x03)
 
-iol_driver.dir_param_write(spi, ser, 0x00, 0x95)
-iol_driver.dir_param_write(spi, ser, 0x00, 0x9A)
-
-print(iol_driver.isdu_read(spi, ser, 0x11, iol_driver.DATA_TYPE_STRING))
+print(iol_driver.isdu_read(spi, ser, 0x94, iol_driver.DATA_TYPE_INTEGER) * 0.01)
 
 iol_driver.com_stop(spi, ser)

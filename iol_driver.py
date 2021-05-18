@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+# KEYENCE のクランプオン式流量センサ FD-Q10C と IO-LINK で通信を行なって
+# 流量を取得するスクリプト．
+
 import serial
 import struct
 import time
