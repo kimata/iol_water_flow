@@ -8,7 +8,6 @@ import spidev
 import serial
 import struct
 import time
-import pprint
 
 import iol_const
 
