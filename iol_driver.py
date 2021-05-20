@@ -198,21 +198,27 @@ def isdu_read(spi, ser, index, data_type):
     chk = 0x00
     flow = 1
     data_list = []
-    header = isdu_res_read(spi, ser, 0x10)
-    chk ^= header
 
-    if (header >> 4) == 0x0D:
-        if (header & 0x0F) == 0x01:
-            remain = isdu_res_read(spi, ser, flow) - 2
-            flow += 1
-            chk ^= length
+    while True:
+        header = isdu_res_read(spi, ser, 0x10)
+        chk = header
+
+        if (header >> 4) == 0x0D:
+            if (header & 0x0F) == 0x01:
+                remain = isdu_res_read(spi, ser, flow) - 2
+                flow += 1
+                chk ^= length
+            else:
+                remain = (header & 0x0F) - 1
+            break
+        elif header == 0x01:
+            # WAIT
+            continue
+        elif (header >> 4) == 0x0C:
+            # ERROR
+            raise RuntimeError('ERROR reponse')
         else:
-            remain = (header & 0x0F) - 1
-    elif (header >> 4) == 0x0C:
-        # ERROR
-        raise RuntimeError('ERROR reponse')
-    else:
-        raise RuntimeError('INVALID reponse')
+            raise RuntimeError('INVALID reponse')
 
     for x in range(remain-1):
         data = isdu_res_read(spi, ser, flow & 0xF)
