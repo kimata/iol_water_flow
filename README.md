@@ -18,5 +18,5 @@ Ubuntu を使っている場合，`/boot/firmware/usercfg.txt` に下記の設�
 
 ## 使用方法
 
-FD-Q10C と接続した状態で，`flow_meter.py` を実行すると，現在の流量が表示されます．
+FD-Q10C と接続した状態で，`water_flow.py` を実行すると，現在の流量が表示されます．
 
